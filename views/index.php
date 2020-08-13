@@ -1,39 +1,3 @@
-<?php
-
-require_once 'vendor/autoLoad.php';
-
-
-use Illuminate\Database\Capsule\Manager as Capsule;
-use App\Models\{Job, Project};
-
-$capsule = new Capsule;
-
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'cursophp',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
-
-// Make this Capsule instance available globally via static methods... (optional)
-$capsule->setAsGlobal();
-// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-$capsule->bootEloquent();
-
-require_once('jobs.php');
-
-$lastName = 'Pereira';
-$name = "Christopher $lastName";
-$limitMoths = 2000;
-
-
-
-// var_dump($jobs); esto es un console.log en js pero en el html
-?>
 <!doctype html>
 <html lang="en">
 
