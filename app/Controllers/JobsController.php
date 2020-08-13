@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Job;
 
-class JobsController {
+class JobsController extends BaseController {
   public function getAddJobAction($request){
 
     if(!empty($request->getMethod() == 'POST')){
@@ -14,7 +14,7 @@ class JobsController {
       $job->description = $postData['description'];
       $job->save();
     }
-
-    include '../views/addJob.php';
+    return $this->renderHTML('addJob.twig');
+    // include '../views/addJob.php';
   }
 }

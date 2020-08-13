@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\{Job, Project};
 
-class indexController {
+class indexController extends  BaseController {
   public function indexAction(){
 
     $jobs = Job::all();
@@ -20,7 +20,10 @@ $lastName = 'Pereira';
 $name = "Christopher $lastName";
 $limitMoths = 2000;
 
-include '../views/index.php';
+return $this->renderHTML('index.twig',[
+  'name' => $name,
+  'jobs' => $jobs
+]);
 // var_dump($jobs); esto es un console.log en js pero en el html
   }
 }
