@@ -24,27 +24,30 @@ class __TwigTemplate_36f6d695598b4ba9aacc201a5df5c736a11393e09a880e0b3b54e4c525f
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "layout.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<html>
-<head>
-  <meta charset=\"utf-8\">
-  <meta  name=\"viewport\"content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-  <link rel=\"stylesheet\"href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\"integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-    crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\"href=\"style.css\">\t
-\t<title>Add Project</title>
-</head>
-<body>
-\t<h1>Add Project</h1>
+        $this->parent = $this->loadTemplate("layout.twig", "addProject.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 4
+        echo "\t<h1>Add Project</h1>
 \t<form action=\"/cursophp/Projects/add\"method=\"post\">
 \t\t<label for=\"title\">Title</label>
 \t\t<input type=\"text\"name=\"title\"><br>
@@ -52,8 +55,7 @@ class __TwigTemplate_36f6d695598b4ba9aacc201a5df5c736a11393e09a880e0b3b54e4c525f
 \t\t<input type=\"\"name=\"description\"><br>
 \t\t<button type=\"submit\">Save</button>
 \t</form>
-</body>
-</html>";
+";
     }
 
     public function getTemplateName()
@@ -61,23 +63,21 @@ class __TwigTemplate_36f6d695598b4ba9aacc201a5df5c736a11393e09a880e0b3b54e4c525f
         return "addProject.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  37 => 1,);
+        return array (  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<html>
-<head>
-  <meta charset=\"utf-8\">
-  <meta  name=\"viewport\"content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-  <link rel=\"stylesheet\"href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\"integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-    crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\"href=\"style.css\">\t
-\t<title>Add Project</title>
-</head>
-<body>
+        return new Source("{% extends \"layout.twig\" %}
+
+{% block content  %}
 \t<h1>Add Project</h1>
 \t<form action=\"/cursophp/Projects/add\"method=\"post\">
 \t\t<label for=\"title\">Title</label>
@@ -86,7 +86,6 @@ class __TwigTemplate_36f6d695598b4ba9aacc201a5df5c736a11393e09a880e0b3b54e4c525f
 \t\t<input type=\"\"name=\"description\"><br>
 \t\t<button type=\"submit\">Save</button>
 \t</form>
-</body>
-</html>", "addProject.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addProject.twig");
+{% endblock %}", "addProject.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addProject.twig");
     }
 }

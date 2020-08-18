@@ -24,25 +24,36 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "layout.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<html>
-    <head>
-      <title>Add Job</title>
-        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\" integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-          crossorigin=\"anonymous\">
-        <link rel=\"stylesheet\" href=\"style.css\">
-    </head>
-    <body>
-    <h1>Add Job</h1>
+        $this->parent = $this->loadTemplate("layout.twig", "addJob.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 4
+        echo "    <h1>Add Job</h1>
+    <div class=\"alert alert-primary\" role=\"alert\">
+    ";
+        // line 6
+        echo twig_escape_filter($this->env, ($context["responseMessage"] ?? null), "html", null, true);
+        echo "
+    </div>
       <form action=\"/cursophp/jobs/add\" method=\"post\">
         <label for=\"\">Title</label>
         <input type=\"text\" name=\"title\"><br>
@@ -50,8 +61,7 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
         <input type=\"text\" name=\"description\"><br>
         <button type=\"submit\">Save</button>
       </form>
-    </body>
-</html>";
+";
     }
 
     public function getTemplateName()
@@ -59,22 +69,25 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
         return "addJob.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  37 => 1,);
+        return array (  54 => 6,  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<html>
-    <head>
-      <title>Add Job</title>
-        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\" integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-          crossorigin=\"anonymous\">
-        <link rel=\"stylesheet\" href=\"style.css\">
-    </head>
-    <body>
+        return new Source("{% extends \"layout.twig\" %}
+
+{% block content  %}
     <h1>Add Job</h1>
+    <div class=\"alert alert-primary\" role=\"alert\">
+    {{responseMessage}}
+    </div>
       <form action=\"/cursophp/jobs/add\" method=\"post\">
         <label for=\"\">Title</label>
         <input type=\"text\" name=\"title\"><br>
@@ -82,7 +95,6 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
         <input type=\"text\" name=\"description\"><br>
         <button type=\"submit\">Save</button>
       </form>
-    </body>
-</html>", "addJob.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addJob.twig");
+{% endblock  %}", "addJob.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addJob.twig");
     }
 }

@@ -24,41 +24,36 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "layout.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<!doctype html>
-<html lang=\"en\">
+        $this->parent = $this->loadTemplate("layout.twig", "index.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset=\"utf-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-
-  <!-- Bootstrap CSS -->
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\" integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-    crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"style.css\">
-
-  <title>Resume</title>
-</head>
-
-<body>
-  <div class=\"container\">
-    <div id=\"resume-header\" class=\"row\">
+    // line 3
+    public function block_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 4
+        echo "    <div id=\"resume-header\" class=\"row\">
       <div class=\"col-3\">
         <img id=\"profile-picture\" src=\"https://ui-avatars.com/api/?name=John+Doe&size=255\" alt=\"\">
       </div>
       <div class=\"col\">
         <h1>";
-        // line 24
+        // line 9
         echo twig_escape_filter($this->env, ($context["name"] ?? null), "html", null, true);
         echo " </h1>
         <h2>PHP Developer</h2>
@@ -85,19 +80,19 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
           <h3 class=\"border-bottom-gray\" >Work Experience</h3>
           <ul>
                 ";
-        // line 48
+        // line 33
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["jobs"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["job"]) {
-            // line 49
+            // line 34
             echo "                  <li class=\"work-position\">
                   <h5>";
-            // line 50
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "title", [], "any", false, false, false, 50), "html", null, true);
+            // line 35
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "title", [], "any", false, false, false, 35), "html", null, true);
             echo "</h5>
                   <p>";
-            // line 51
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "description", [], "any", false, false, false, 51), "html", null, true);
+            // line 36
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "description", [], "any", false, false, false, 36), "html", null, true);
             echo "</p>
                   </li>
                 ";
@@ -105,7 +100,7 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['job'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 53
+        // line 38
         echo "  
           </ul>
         </div>
@@ -179,19 +174,7 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
           Designed by @hectorbenitez
       </div>
     </div>
-  </div>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\"
-    crossorigin=\"anonymous\"></script>
-  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\"
-    crossorigin=\"anonymous\"></script>
-  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js\" integrity=\"sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em\"
-    crossorigin=\"anonymous\"></script>
-</body>
-
-</html>";
+";
     }
 
     public function getTemplateName()
@@ -206,29 +189,14 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
 
     public function getDebugInfo()
     {
-        return array (  109 => 53,  100 => 51,  96 => 50,  93 => 49,  89 => 48,  62 => 24,  37 => 1,);
+        return array (  104 => 38,  95 => 36,  91 => 35,  88 => 34,  84 => 33,  57 => 9,  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<!doctype html>
-<html lang=\"en\">
+        return new Source("{% extends \"layout.twig\" %}
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset=\"utf-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-
-  <!-- Bootstrap CSS -->
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css\" integrity=\"sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B\"
-    crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"style.css\">
-
-  <title>Resume</title>
-</head>
-
-<body>
-  <div class=\"container\">
+{% block content  %}
     <div id=\"resume-header\" class=\"row\">
       <div class=\"col-3\">
         <img id=\"profile-picture\" src=\"https://ui-avatars.com/api/?name=John+Doe&size=255\" alt=\"\">
@@ -336,18 +304,7 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
           Designed by @hectorbenitez
       </div>
     </div>
-  </div>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\"
-    crossorigin=\"anonymous\"></script>
-  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\"
-    crossorigin=\"anonymous\"></script>
-  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js\" integrity=\"sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em\"
-    crossorigin=\"anonymous\"></script>
-</body>
-
-</html>", "index.twig", "C:\\xampp\\htdocs\\cursophp\\views\\index.twig");
+{% endblock  %}
+", "index.twig", "C:\\xampp\\htdocs\\cursophp\\views\\index.twig");
     }
 }
