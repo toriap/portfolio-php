@@ -34,6 +34,12 @@
                   <li class="work-position">
                   <h5>{{ job.title }}</h5>
                   <p>{{job.description}}</p>
+                  {% if job.route == ''%}
+                    <h5>No image Founded :/ </h5>
+                    {% else %}
+                      <img src="public/uploads/{{ job.route}}" 
+                      alt="logo" style="width:120px; heigh:90px;" >
+                      {% endif%}
                   </li>
                 {% endfor %}  
           </ul>

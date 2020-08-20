@@ -94,13 +94,28 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
             // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "description", [], "any", false, false, false, 36), "html", null, true);
             echo "</p>
-                  </li>
+                  ";
+            // line 37
+            if ((0 === twig_compare(twig_get_attribute($this->env, $this->source, $context["job"], "route", [], "any", false, false, false, 37), ""))) {
+                // line 38
+                echo "                    <h5>No image Founded :/ </h5>
+                    ";
+            } else {
+                // line 40
+                echo "                      <img src=\"public/uploads/";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["job"], "route", [], "any", false, false, false, 40), "html", null, true);
+                echo "\" 
+                      alt=\"logo\" style=\"width:120px; heigh:90px;\" >
+                      ";
+            }
+            // line 43
+            echo "                  </li>
                 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['job'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
+        // line 44
         echo "  
           </ul>
         </div>
@@ -189,7 +204,7 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
 
     public function getDebugInfo()
     {
-        return array (  104 => 38,  95 => 36,  91 => 35,  88 => 34,  84 => 33,  57 => 9,  50 => 4,  46 => 3,  35 => 1,);
+        return array (  119 => 44,  112 => 43,  105 => 40,  101 => 38,  99 => 37,  95 => 36,  91 => 35,  88 => 34,  84 => 33,  57 => 9,  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -230,6 +245,12 @@ class __TwigTemplate_dac295c263c75fbd86b80e88c19c39ecec35da3f1db6780041f3afd0f5a
                   <li class=\"work-position\">
                   <h5>{{ job.title }}</h5>
                   <p>{{job.description}}</p>
+                  {% if job.route == ''%}
+                    <h5>No image Founded :/ </h5>
+                    {% else %}
+                      <img src=\"public/uploads/{{ job.route}}\" 
+                      alt=\"logo\" style=\"width:120px; heigh:90px;\" >
+                      {% endif%}
                   </li>
                 {% endfor %}  
           </ul>

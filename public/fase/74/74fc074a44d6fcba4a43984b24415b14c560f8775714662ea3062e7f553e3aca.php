@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* addJob.twig */
-class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb44224 extends Template
+/* addUser.twig */
+class __TwigTemplate_3ddb9087d27ef90697df1fbcd46a49db6b2d521c8a8f75c17f92c90d0cc1e87b extends Template
 {
     private $source;
     private $macros = [];
@@ -38,7 +38,7 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        $this->parent = $this->loadTemplate("layout.twig", "addJob.twig", 1);
+        $this->parent = $this->loadTemplate("layout.twig", "addUser.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
@@ -47,28 +47,27 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
     {
         $macros = $this->macros;
         // line 4
-        echo "    <h1>Add Job</h1>
-    <div class=\"alert alert-primary\" role=\"alert\">
+        echo "
+  <h1>Add User</h1>
+  <divclass=\"alert alert-primary\"role=\"alert\">
     ";
-        // line 6
+        // line 7
         echo twig_escape_filter($this->env, ($context["responseMessage"] ?? null), "html", null, true);
         echo "
-    </div>
-      <form action=\"/cursophp/jobs/add\" 
-      method=\"post\" enctype =\"multipart/form-data\">
-        <label for=\"\">Title</label>
-        <input type=\"text\" name=\"title\"><br>
-        <label for=\"\">Description</label>
-        <input type=\"text\" name=\"description\"><br>
-        <input type=\"file\" name=\"logo\"><br>
-        <button type=\"submit\">Save</button>
-      </form>
+  </div>
+  <form action=\"../users/add\"method=\"post\"enctype=\"multipart/form-data\">
+    <label for=\"\">Email: </label>
+    <input type=\"email\"name=\"email\"><br>
+    <label for=\"\">Password: </label>
+    <input type=\"password\"name=\"password\"><br>
+    <button type=\"submit\">Save</button>
+  </form>
 ";
     }
 
     public function getTemplateName()
     {
-        return "addJob.twig";
+        return "addUser.twig";
     }
 
     public function isTraitable()
@@ -78,27 +77,26 @@ class __TwigTemplate_d7fb28b6fac98b56ef723b96151faf08ca6ec3c50180c8833cdc3af2ceb
 
     public function getDebugInfo()
     {
-        return array (  54 => 6,  50 => 4,  46 => 3,  35 => 1,);
+        return array (  55 => 7,  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends \"layout.twig\" %}
 
-{% block content  %}
-    <h1>Add Job</h1>
-    <div class=\"alert alert-primary\" role=\"alert\">
-    {{responseMessage}}
-    </div>
-      <form action=\"/cursophp/jobs/add\" 
-      method=\"post\" enctype =\"multipart/form-data\">
-        <label for=\"\">Title</label>
-        <input type=\"text\" name=\"title\"><br>
-        <label for=\"\">Description</label>
-        <input type=\"text\" name=\"description\"><br>
-        <input type=\"file\" name=\"logo\"><br>
-        <button type=\"submit\">Save</button>
-      </form>
-{% endblock  %}", "addJob.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addJob.twig");
+{% block content %}
+
+  <h1>Add User</h1>
+  <divclass=\"alert alert-primary\"role=\"alert\">
+    {{ responseMessage }}
+  </div>
+  <form action=\"../users/add\"method=\"post\"enctype=\"multipart/form-data\">
+    <label for=\"\">Email: </label>
+    <input type=\"email\"name=\"email\"><br>
+    <label for=\"\">Password: </label>
+    <input type=\"password\"name=\"password\"><br>
+    <button type=\"submit\">Save</button>
+  </form>
+{% endblock %}", "addUser.twig", "C:\\xampp\\htdocs\\cursophp\\views\\addUser.twig");
     }
 }
